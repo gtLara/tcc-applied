@@ -4,8 +4,17 @@ stages:
     deps:
       - src/load.py
       - data/raw/motor_current_signals.pkl
+      - src/utils/data/load.py
+      - src/utils/data/write.py
     params:
       - load.decimation_factor
       - load.moving_average_win_size
     outs:
       - data/interim/processed_signal.pkl
+  detrend:  
+    cmd: python src/detrend.py 
+    deps:
+      - src/detrend.py
+      - data/interim/processed_signal.pkl
+      - src/utils/models/trend.py
+      - src/utils/data/write.py

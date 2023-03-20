@@ -22,15 +22,29 @@ def write_signal(signal: np.ndarray | pd.Series):
 
     if stage_name == "load":
         write_load_output_signal(signal)
+    if stage_name == "detrend":
+        write_detrend_output_signal(signal)
 
 
 def write_load_output_signal(signal: np.ndarray | pd.Series):
     """
     Write output signal of load stage.
 
-    :param signal: Signal to write as stage output
+    :param signal: Signal to write as load stage output
     :type signal: np.array or pd.Series
     """
 
     with open("data/interim/processed_signal.pkl", "wb") as file:
+        pickle.dump(signal, file)
+
+
+def write_detrend_output_signal(signal: np.ndarray | pd.Series):
+    """
+    Write output signal of detrend stage.
+
+    :param signal: Signal to write as detrend stage output
+    :type signal: np.array or pd.Series
+    """
+
+    with open("data/interim/detrended_signal.pkl", "wb") as file:
         pickle.dump(signal, file)

@@ -9,6 +9,12 @@ stages:
     - path: src/load.py
       md5: a4fdec4276a6abf125fe8d92245539d4
       size: 338
+    - path: src/utils/data/load.py
+      md5: 2df09fb19d9c67454a300299075ea11c
+      size: 1511
+    - path: src/utils/data/write.py
+      md5: ef5ea4ff6ead710be4085025dc001250
+      size: 1286
     params:
       params.yaml:
         load.decimation_factor: 2
@@ -17,3 +23,18 @@ stages:
     - path: data/interim/processed_signal.pkl
       md5: e032711322b5ea0953b234c1d5491c80
       size: 192168
+  detrend:
+    cmd: python src/detrend.py
+    deps:
+    - path: data/interim/processed_signal.pkl
+      md5: e032711322b5ea0953b234c1d5491c80
+      size: 192168
+    - path: src/detrend.py
+      md5: 52e1328cd2a3a40a274c0528d69f377a
+      size: 346
+    - path: src/utils/data/write.py
+      md5: ef5ea4ff6ead710be4085025dc001250
+      size: 1286
+    - path: src/utils/models/trend.py
+      md5: bac8217fc79564aa9af82c3b05ef5185
+      size: 980
