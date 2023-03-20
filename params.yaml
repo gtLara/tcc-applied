@@ -1,0 +1,3 @@
+load:
+  decimation_factor: 2
+  moving_average_win_size: 1
