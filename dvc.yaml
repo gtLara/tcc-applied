@@ -18,3 +18,5 @@ stages:
       - data/interim/processed_signal.pkl
       - src/utils/models/trend.py
       - src/utils/data/write.py
+    outs:
+      - data/interim/detrended_signal.pkl

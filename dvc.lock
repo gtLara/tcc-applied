@@ -38,3 +38,7 @@ stages:
     - path: src/utils/models/trend.py
       md5: bac8217fc79564aa9af82c3b05ef5185
       size: 980
+    outs:
+    - path: data/interim/detrended_signal.pkl
+      md5: 5c95fa71c750e0e3501f04e5b604f744
+      size: 192168
