@@ -1,0 +1,19 @@
+schema: '2.0'
+stages:
+  load:
+    cmd: python src/load.py
+    deps:
+    - path: data/raw/motor_current_signals.pkl
+      md5: 139a4d56c1b4d5deaba4911b1693b6aa
+      size: 60481185
+    - path: src/load.py
+      md5: a4fdec4276a6abf125fe8d92245539d4
+      size: 338
+    params:
+      params.yaml:
+        load.decimation_factor: 2
+        load.moving_average_win_size: 1
+    outs:
+    - path: data/interim/processed_signal.pkl
+      md5: e032711322b5ea0953b234c1d5491c80
+      size: 192168

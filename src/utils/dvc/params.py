@@ -6,7 +6,7 @@ import sys
 import os
 
 
-def get_params():
+def get_params() -> dict:
     """
     Reads parameters of pipeline stage as a dictionary. The dictionary is
     loaded from the field of "params.yaml" which corresponds to the caller

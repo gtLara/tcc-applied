@@ -4,9 +4,8 @@ stages:
     deps:
       - src/load.py
       - data/raw/motor_current_signals.pkl
-      - params/load.json
     params:
-      - decimation_factor
-      - moving_average_win_size
+      - load.decimation_factor
+      - load.moving_average_win_size
     outs:
-      - data/interim/processed_signal.parquet
+      - data/interim/processed_signal.pkl

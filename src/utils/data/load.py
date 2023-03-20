@@ -9,12 +9,16 @@ from scipy.signal import decimate
 from scipy.ndimage import uniform_filter1d
 
 
-def get_seasonal_signal(decimation_factor: int = 2,
+def get_signal(filename="data/raw/motor_current_signals.pkl",
+                        decimation_factor: int = 2,
                         moving_average_win_size:
                         Optional[int] = None) -> pd.Series | np.ndarray:
     """
     Loads and processes pseudo-periodic motor current signal.
 
+    :param filename: Data file path. Defaults to
+    "data/motor_current_signals.pkl"
+    :type filename: str
     :param decimation_factor: Signal downsampling factor, defaults to 2. For
     no downsampling set 'decimation_factor=1'
     :type decimation_factor: int
@@ -25,7 +29,7 @@ def get_seasonal_signal(decimation_factor: int = 2,
     :rtype: pd.Series if 'moving_average_window_size=0' else np.ndarray
     """
 
-    with open("data/motor_current_signals.pkl", "rb") as file:
+    with open(filename, "rb") as file:
         data = pickle.load(file)
 
     start = pd.to_datetime("2021-05-29 16:32")
