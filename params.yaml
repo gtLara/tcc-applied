@@ -1,3 +1,5 @@
 load:
   decimation_factor: 2
   moving_average_win_size: 1
+decompose:
+  polynomial_trend_degree: 2

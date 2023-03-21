@@ -11,12 +11,14 @@ stages:
       - load.moving_average_win_size
     outs:
       - data/interim/processed_signal.pkl
-  detrend:  
-    cmd: python src/detrend.py 
+  decompose:  
+    cmd: python src/decompose.py 
     deps:
-      - src/detrend.py
+      - src/decompose.py
       - data/interim/processed_signal.pkl
       - src/utils/models/trend.py
+      - src/utils/models/seasonality.py
+      - src/utils/models/decomposition.py
       - src/utils/data/write.py
     outs:
-      - data/interim/detrended_signal.pkl
+      - data/interim/decomposition_residual.pkl

@@ -9,8 +9,11 @@ import pickle
 with open("data/interim/processed_signal.pkl", "rb") as file:
     signal = pickle.load(file)
 
-params = {"polynomial_trend_degree": 2}  # get_params()
-sampling_period = 50
+params = get_params()
+
+# Original signal sampling rate is 100 Hz
+
+sampling_period = 100 // get_params("load")["decimation_factor"]
 
 # decomposition
 
@@ -21,7 +24,7 @@ period = infer_period(signal-trend, period_estimate=60,
                       sampling_period=sampling_period)
 
 trended_seasonal_pattern = get_stochastic_seasonal_component(signal, period,
-                                                             True)
+                                                             False)
 
 plt.show()
 

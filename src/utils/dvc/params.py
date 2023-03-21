@@ -1,28 +1,37 @@
 """
 Defines functions for handling DVC pipeline parameters.
 """
+from typing import Optional
 import yaml
 import sys
 import os
 
 
-def get_params() -> dict:
+def get_params(stage: Optional[str] = None) -> dict:
     """
-    Reads parameters of pipeline stage as a dictionary. The dictionary is
-    loaded from the field of "params.yaml" which corresponds to the caller
-    file name
+    Reads parameters of pipeline stage as a dictionary. If "stage" is None,
+    the dictionary is loaded from the field of "params.yaml" which corresponds
+    to the caller file name. If a string value for "stage" is provided the
+    dictionary is loaded from parameters for that stage
 
-    Ex: File "load.py", corresponding to the DVC pipeline stage "load", invokes
-    this function. The field "load" from "params.yaml" is returned as a
-    dictionary.
+    Ex:
 
+    > File "load.py", corresponding to the DVC pipeline stage "load", invokes
+    this function with "stage=None". The field "load" from "params.yaml" is
+    returned as a dictionary.
+
+    :param stage: Stage whose parameters will be loaded, defaults to None
+    :type stage: str, optional
     :returns params: Dictionary containing parameters of the stage associated
-    to the caller file
+    to the "stage" parameter or caller file if "stage=None"
     :raises KeyError: If the calling file name does not represent a stage with
     parameters specified in a field of "params.yaml" a KeyError is raised.
     """
 
-    stage_fn = os.path.basename(sys.argv[0]).replace(".py", "")
+    if stage is not None:
+        stage_fn = stage
+    else:
+        stage_fn = os.path.basename(sys.argv[0]).replace(".py", "")
 
     try:
         params = yaml.safe_load(open("params.yaml"))[stage_fn]
