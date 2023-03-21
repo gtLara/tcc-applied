@@ -18,7 +18,9 @@ stages:
       - data/interim/processed_signal.pkl
       - src/utils/models/trend.py
       - src/utils/models/seasonality.py
-      - src/utils/models/decomposition.py
+      - src/utils/decomposition/decomposition.py
       - src/utils/data/write.py
     outs:
-      - data/interim/decomposition_residual.pkl
+      - data/decomposed/trend.pkl
+      - data/decomposed/seasonal_pattern.pkl
+      - data/decomposed/residual.pkl

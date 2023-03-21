@@ -13,8 +13,8 @@ stages:
       md5: 2df09fb19d9c67454a300299075ea11c
       size: 1511
     - path: src/utils/data/write.py
-      md5: ef5ea4ff6ead710be4085025dc001250
-      size: 1286
+      md5: 4bd72a31fcd1d7d20034c4912683c53b
+      size: 1921
     params:
       params.yaml:
         load.decimation_factor: 2
@@ -41,4 +41,35 @@ stages:
     outs:
     - path: data/interim/detrended_signal.pkl
       md5: 5c95fa71c750e0e3501f04e5b604f744
+      size: 192168
+  decompose:
+    cmd: python src/decompose.py
+    deps:
+    - path: data/interim/processed_signal.pkl
+      md5: e032711322b5ea0953b234c1d5491c80
+      size: 192168
+    - path: src/decompose.py
+      md5: 0d6b1f52ac532a5a44d307a068f7cbff
+      size: 703
+    - path: src/utils/data/write.py
+      md5: 4bd72a31fcd1d7d20034c4912683c53b
+      size: 1921
+    - path: src/utils/decomposition/decomposition.py
+      md5: 0c44b6ac786397153fb8bdcb88cd5492
+      size: 1210
+    - path: src/utils/models/seasonality.py
+      md5: 7e117734cdbe35ea03ff29e9b40c7f10
+      size: 3104
+    - path: src/utils/models/trend.py
+      md5: bac8217fc79564aa9af82c3b05ef5185
+      size: 980
+    outs:
+    - path: data/decomposed/residual.pkl
+      md5: 249afa79a538b44a94d44b23d6dd8c9e
+      size: 192168
+    - path: data/decomposed/seasonal_pattern.pkl
+      md5: 25cd2cc22ab08fb690e40c5427af0c2e
+      size: 192168
+    - path: data/decomposed/trend.pkl
+      md5: da81c124421950348ceb2f4325182dc1
       size: 192168
