@@ -1,6 +1,7 @@
 """
 Functions for correlation analysis
 """
+from typing import Union
 from scipy.signal import correlate
 from warnings import warn
 import pandas as pd
@@ -66,6 +67,7 @@ def get_autocorrelation(signal: np.ndarray | pd.Series,
     :type one_sided: bool
     :return: Auto-correlation (or covariance if 'normalize=False') of
     'signal_a'
+    :rtype: np.ndarray
     """
 
     autocorrelation = get_crosscorrelation(signal_a=signal, signal_b=signal,
@@ -77,3 +79,28 @@ def get_autocorrelation(signal: np.ndarray | pd.Series,
         autocorrelation = autocorrelation[center:]
 
     return autocorrelation
+
+
+def infer_period(signal: np.ndarray | pd.Series, sampling_period: int,
+                 period_estimate: int, return_in_samples: bool = True,
+                 search_ratio: int = 6) -> int:
+
+    absolute_autocorrelation = np.abs(get_autocorrelation(signal=signal,
+                                                          n_lags=len(signal),
+                                                          normalize=False))
+
+    period_estimate_in_samples = period_estimate*sampling_period
+    n_lookback_samples = period_estimate_in_samples // search_ratio
+
+    lower_bound = period_estimate_in_samples - n_lookback_samples
+
+    autocorrelation_window = absolute_autocorrelation[lower_bound:]
+
+    inferred_period_in_samples = np.argmax(autocorrelation_window) + lower_bound
+
+    if not return_in_samples:
+        inferred_period = inferred_period_in_samples // sampling_period
+    else:
+        inferred_period = inferred_period_in_samples
+
+    return inferred_period
