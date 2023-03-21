@@ -49,8 +49,8 @@ stages:
       md5: e032711322b5ea0953b234c1d5491c80
       size: 192168
     - path: src/decompose.py
-      md5: 0d6b1f52ac532a5a44d307a068f7cbff
-      size: 703
+      md5: 8ddc9a62cf10089db0a76c828726e39a
+      size: 804
     - path: src/utils/data/write.py
       md5: 4bd72a31fcd1d7d20034c4912683c53b
       size: 1921
@@ -73,3 +73,6 @@ stages:
     - path: data/decomposed/trend.pkl
       md5: da81c124421950348ceb2f4325182dc1
       size: 192168
+    - path: plots/decomposition.png
+      md5: 93c455addd22f42e347d4127504cc7dd
+      size: 144538

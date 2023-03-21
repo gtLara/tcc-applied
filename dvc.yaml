@@ -24,3 +24,5 @@ stages:
       - data/decomposed/trend.pkl
       - data/decomposed/seasonal_pattern.pkl
       - data/decomposed/residual.pkl
+    plots:
+      - plots/decomposition.png

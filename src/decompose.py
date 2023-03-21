@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 from utils.dvc.params import get_params
 from utils.decomposition.decomposition import get_decomposition
 from utils.data.write import write_signal
+from utils.visual.decomposition import plot_decomposition
 import pickle
 
 # TODO: paraeterize signal read like signal write !
@@ -20,3 +21,5 @@ decomposition_results = get_decomposition(signal, polynomial_trend_degree,
                                           sampling_period)
 
 write_signal(decomposition_results)
+
+plot_decomposition(decomposition_results)
