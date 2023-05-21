@@ -3,12 +3,7 @@ import matplotlib.pyplot as plt
 from utils.visual.configure import get_configs
 
 # TODO: fix this!!
-mpl.rcParams = get_configs()
-
-mpl.rcParams["figure.figsize"] = (8, 8)
-mpl.rcParams["axes.prop_cycle"] = mpl.cycler(color=["#131D42", "black",
-                                                    "gray"])
-mpl.style.use("ggplot")
+mpl.rcParams = get_configs(figsize=(8, 8))
 
 
 def plot_decomposition(decomposition_results: dict):

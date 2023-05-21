@@ -55,11 +55,11 @@ stages:
       md5: 4bd72a31fcd1d7d20034c4912683c53b
       size: 1921
     - path: src/utils/decomposition/decomposition.py
-      md5: 0c44b6ac786397153fb8bdcb88cd5492
-      size: 1210
+      md5: 2cc4e87c108cc9642463933a3bc789a6
+      size: 1254
     - path: src/utils/models/seasonality.py
-      md5: 7e117734cdbe35ea03ff29e9b40c7f10
-      size: 3104
+      md5: db8afb65379f832fb9a2d9625d7f5662
+      size: 3163
     - path: src/utils/models/trend.py
       md5: bac8217fc79564aa9af82c3b05ef5185
       size: 980
@@ -74,5 +74,50 @@ stages:
       md5: da81c124421950348ceb2f4325182dc1
       size: 192168
     - path: plots/decomposition.png
-      md5: 93c455addd22f42e347d4127504cc7dd
+      md5: e278ccf5f506dded4567f831c30da404
       size: 144538
+    - path: plots/seasonal_pattern.png
+      md5: 80c5ac1f28ece2bcc06b03cdb7cdbc73
+      size: 215790
+  analyze_autocorrelation:
+    cmd: python src/analyze_autocorrelation.py
+    deps:
+    - path: data/decomposed/residual.pkl
+      md5: 249afa79a538b44a94d44b23d6dd8c9e
+      size: 192168
+    - path: data/interim/processed_signal.pkl
+      md5: e032711322b5ea0953b234c1d5491c80
+      size: 192168
+    - path: src/analyze_autocorrelation.py
+      md5: d2b94d3cb447a839aff3197de2f643c3
+      size: 302
+    - path: src/utils/signals/correlation.py
+      md5: fa7f0abc575137391ae3276f5a46ac11
+      size: 3652
+  analyze_decomposition_residuals:
+    cmd: python src/analyze_decomposition_residuals.py
+    deps:
+    - path: data/decomposed/residual.pkl
+      md5: 249afa79a538b44a94d44b23d6dd8c9e
+      size: 192168
+    - path: data/interim/processed_signal.pkl
+      md5: e032711322b5ea0953b234c1d5491c80
+      size: 192168
+    - path: src/analyze_decomposition_residuals.py
+      md5: 2d1ae99c2ed3dce68a2ef30e1741e2b2
+      size: 1120
+    - path: src/utils/signals/correlation.py
+      md5: 4bcb47448d2ceb8ea150e48e49ea0562
+      size: 3656
+    - path: src/utils/visual/correlation.py
+      md5: f61b8c27db3da34594f59320984eac61
+      size: 652
+    outs:
+    - path: plots/complete_residual_autocorrelation.png
+      md5: dab1cee6c06b4fce980f2c68aaa5edc6
+      size: 55008
+    - path: plots/residual_autocorrelation.png
+      md5: 0a1ba704e2a37af000cb7a65db6c8df9
+      size: 51871
+  model_residuals:
+    cmd: python src/model_residuals.py

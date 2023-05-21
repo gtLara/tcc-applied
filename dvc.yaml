@@ -26,3 +26,20 @@ stages:
       - data/decomposed/residual.pkl
     plots:
       - plots/decomposition.png
+      - plots/seasonal_pattern.png
+  analyze_decomposition_residuals:  
+    cmd: python src/analyze_decomposition_residuals.py
+    deps:
+      - src/analyze_decomposition_residuals.py
+      - src/utils/signals/correlation.py
+      - src/utils/visual/correlation.py
+      - data/interim/processed_signal.pkl
+      - data/decomposed/residual.pkl
+    plots:
+      - plots/complete_residual_autocorrelation.png
+      - plots/residual_autocorrelation.png
+  model_residuals:  
+    cmd: python src/model_residuals.py
+  # analyze_pzp:  
+  # analyze_tfr:  
+  # detect_anomaly: ? keep this?

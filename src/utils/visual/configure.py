@@ -1,10 +1,14 @@
+import copy
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 
-def get_configs():
-    mpl.rcParams["figure.figsize"] = (8, 5)
-    mpl.rcParams["axes.prop_cycle"] = mpl.cycler(color=["#131D42", "black",
-                                                        "gray"])
-    mpl.style.use("ggplot")
+def get_configs(figsize=(8, 5)):
 
-    return mpl.rcParams
+    params = copy.deepcopy(mpl.rcParams)
+    params["figure.figsize"] = figsize
+    params["axes.prop_cycle"] = mpl.cycler(color=["#131D42", "black",
+                                                             "gray"])
+    plt.style.use("ggplot")
+
+    return params

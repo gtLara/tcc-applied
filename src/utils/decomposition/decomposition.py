@@ -8,7 +8,8 @@ from utils.signals.correlation import infer_period
 
 def get_decomposition(signal: np.ndarray | pd.Series,
                       polynomial_trend_degree: int,
-                      sampling_period: int):
+                      sampling_period: int,
+                      visual: bool = True):
 
     trend = get_polynomial_trend(signal=signal,
                                  degree=polynomial_trend_degree)
@@ -18,7 +19,7 @@ def get_decomposition(signal: np.ndarray | pd.Series,
 
     trended_seasonal_pattern = get_stochastic_seasonal_component(signal,
                                                                  period,
-                                                                 False)
+                                                                 visual)
 
     seasonal_pattern = get_detrended_signal(signal=trended_seasonal_pattern,
                                             trend_degree=polynomial_trend_degree)

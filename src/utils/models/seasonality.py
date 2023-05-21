@@ -80,6 +80,7 @@ def get_stochastic_seasonal_component(signal: np.ndarray | pd.Series,
 
         plt.title("Visualization of Stochastic Seasonal Component Computation")
         plt.legend()
+        plt.savefig("plots/seasonal_pattern.png", dpi=150)
 
     seasonal_component = np.tile(seasonal_pattern, n_periods)
 

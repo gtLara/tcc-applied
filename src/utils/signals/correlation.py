@@ -50,7 +50,7 @@ def get_crosscorrelation(signal_a: np.ndarray | pd.Series,
 
 
 def get_autocorrelation(signal: np.ndarray | pd.Series,
-                        n_lags: int = 15,
+                        n_lags: int = np.inf,
                         normalize: bool = True,
                         one_sided: bool = True) -> np.ndarray:
     """
